@@ -1,0 +1,108 @@
+version: "3"
+
+networks:
+  health_check_network:
+    driver: overlay
+
+volumes:
+  postgres-data:
+  mongo-data:
+  rabbit-data:
+  minio-data:
+  smtp-data:
+  redis-data:
+
+services:
+  minio:
+    restart: always
+    image: minio/minio:RELEASE.2018-03-19T19-22-06Z
+    environment:
+      - MINIO_ACCESS_KEY=admin
+      - MINIO_SECRET_KEY=password
+    volumes:
+      - minio-data:/export
+    ports:
+      - 9001:9000
+    deploy:
+      restart_policy:
+        delay: 10s
+        max_attempts: 10
+        window: 60s
+    command: server /export
+    networks:
+      - health_check_network
+
+  postgres:
+    restart: always
+    image: postgres
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+    ports:
+      - 5432:5432/tcp
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    networks:
+      - health_check_network
+
+  mongo:
+    restart: always
+    image: mongo:3.6.3
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+        reservations:
+          memory: 512M
+    ports:
+      - 27017:27017/tcp
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - health_check_network
+
+  rabbit:
+    restart: always
+    image: rabbitmq
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+    ports:
+      - 15672:15672/tcp
+      - 5672:5672/tcp
+      - 5673:5673/tcp
+    volumes:
+      - rabbit-data:/var/lib/rabbitmq
+    networks:
+      - health_check_network
+
+  redis:
+    restart: always
+    ports:
+      - 6380:6379/tcp
+    image: redis:4.0.1-alpine
+    volumes:
+      - redis-data:/data
+    networks:
+      - health_check_network
+
+  smtp:
+    image: namshi/smtp
+    ports:
+     - 25:25
+    environment:
+      - SMARTHOST_ADDRESS=mail.mysmtp.com
+      - SMARTHOST_PORT=587
+      - SMARTHOST_USER=myuser
+      - SMARTHOST_PASSWORD=secret
+      - SMARTHOST_ALIASES=*.mysmtp.com
