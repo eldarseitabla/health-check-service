@@ -1,7 +1,7 @@
 {
   "name": "@eldarseytablaev/health-check-service",
   "license": "UNLICENSED",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
     "start:example:app": "node ./example/app.js",
