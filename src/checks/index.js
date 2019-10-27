@@ -6,5 +6,5 @@ const mongo = require('./mongo')
 const rabbit = require('./rabbit')
 
 module.exports = {
-    postgres, redis, smtp, aws, mongo, rabbit,
+  postgres, redis, smtp, aws, mongo, rabbit,
 }

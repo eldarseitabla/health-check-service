@@ -1,20 +1,32 @@
+# OS generated files
+DS_Store
+.DS_Store?
+._*
+.*.sw[op]
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editors and IDEs
+.idea/
+.vscode/
+
 # Dependencies
 node_modules/
 
-# Compiled output
-build
-dist
+#package-lock.json
 
-temp/
+# dotenv environment variables file
 .env
+.env.*
+!.env.example
+
+# Compiled output
+build/
+dist/
 
 # Logs
+logs
+*.log
 npm-debug.log*
-
-# Editors and IDEs
-.idea
-
-# Misc
-.DS_Store
-
-.npmrc

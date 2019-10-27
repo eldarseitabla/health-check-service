@@ -15,68 +15,68 @@ const Minio = require('minio')
 const Docker = require('dockerode')
 
 const docker = new Docker({
-    socketPath: '/var/run/docker.sock',
-    Promise,
+  socketPath: '/var/run/docker.sock',
+  Promise,
 })
 
 const s3Options = Object.freeze({
-    endpoint: process.env.AWS_S3_ENDPOINT,
-    accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
-    s3BucketEndpoint: true,
-    signatureVersion: 'v4',
-    bucketName: process.env.AWS_S3_BUCKET,
-    region: 'eu-central-1',
+  endpoint: process.env.AWS_S3_ENDPOINT,
+  accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
+  s3BucketEndpoint: true,
+  signatureVersion: 'v4',
+  bucketName: process.env.AWS_S3_BUCKET,
+  region: 'eu-central-1',
 })
 
 const minioOptions = {
-    endPoint: process.env.MINIO_HOST,
-    port: +process.env.MINIO_PORT,
-    secure: false,
-    accessKey: s3Options.accessKeyId,
-    secretKey: s3Options.secretAccessKey,
+  endPoint: process.env.MINIO_HOST,
+  port: +process.env.MINIO_PORT,
+  secure: false,
+  accessKey: s3Options.accessKeyId,
+  secretKey: s3Options.secretAccessKey,
 }
 
 const minioClient = new Minio.Client(minioOptions)
 minioClient.makeBucket = util.promisify(minioClient.makeBucket)
 minioClient._bucketExists = minioClient.bucketExists
-minioClient.bucketExists = async (bucketName) => {
-    try {
-        await minioClient._bucketExists(bucketName)
-    } catch (err) {
-        if (err && err.code === 'NoSuchBucket') {
-            return false
-        } else if (err) {
-            return err
-        }
+minioClient.bucketExists = async(bucketName) => {
+  try {
+    await minioClient._bucketExists(bucketName)
+  } catch (err) {
+    if (err && err.code === 'NoSuchBucket') {
+      return false
+    } else if (err) {
+      return err
     }
-    return true
+  }
+  return true
 }
 
-const createBucket = async () => {
-    let exists
-    try {
-        exists = await minioClient.bucketExists(s3Options.bucketName)
-        if (!exists) {
-            return minioClient.makeBucket(s3Options.bucketName, s3Options.region)
-        }
-    } catch (e) {
-        throw new Error(e.message)
+const createBucket = async() => {
+  let exists
+  try {
+    exists = await minioClient.bucketExists(s3Options.bucketName)
+    if (!exists) {
+      return minioClient.makeBucket(s3Options.bucketName, s3Options.region)
     }
-    return exists
+  } catch (e) {
+    throw new Error(e.message)
+  }
+  return exists
 }
 
-const runServer = async (checkHealthMW) => {
-    const app = express()
-    app.get('/health', checkHealthMW)
-    return app
+const runServer = async(checkHealthMW) => {
+  const app = express()
+  app.get('/health', checkHealthMW)
+  return app
 }
 
 module.exports = {
-    runServer,
-    minioClient,
-    minioOptions,
-    createBucket,
-    s3Options,
-    docker,
+  runServer,
+  minioClient,
+  minioOptions,
+  createBucket,
+  s3Options,
+  docker,
 }

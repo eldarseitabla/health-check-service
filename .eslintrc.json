@@ -1,27 +1,55 @@
 {
-    "extends": "airbnb-base",
-    "plugins": [
-        "jest"
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "env": {
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "rules": {
+    "indent": ["error", 2, {
+      "MemberExpression": 1,
+      "SwitchCase": 1
+    }],
+    "quotes": ["error", "single"],
+    "semi": [
+      "error",
+      "never"
     ],
-    "env": {
-        "browser": true,
-        "node": true,
-        "jest/globals": true
-    },
-    "globals": {
-        "i18n": true
-    },
-    "rules": {
-        "no-prototype-builtins": 0,
-        "import/prefer-default-export": 0,
-        "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
-        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-        "indent": ["error", 4],
-        "max-len": ["error", 140],
-        "semi": ["error", "never"],
-        "no-underscore-dangle": 0,
-        "func-style": ["error", "expression"],
-        "class-methods-use-this": 0,
-        "no-console": 0
-    }
+    "max-len": "off",
+    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+    "strict": [
+      "error",
+      "never"
+    ],
+    "comma-style": "error",
+    "consistent-this": [
+      "error",
+      "_this"
+    ],
+    "keyword-spacing": "error",
+    "no-buffer-constructor": "warn",
+    "no-console": "off",
+    "no-multi-spaces": "error",
+    "func-call-spacing": "error",
+    "no-trailing-spaces": "error",
+    "space-before-blocks": "error",
+    "space-before-function-paren": [
+      "error",
+      "never"
+    ],
+    "space-infix-ops": "error",
+    "space-unary-ops": "error",
+    "no-var": "warn",
+    "prefer-const": "warn",
+    "no-restricted-globals": [
+      "error",
+      {
+        "name": "context",
+        "message": "Don't use Mocha's global context"
+      }
+    ]
+  }
 }
