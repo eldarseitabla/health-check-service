@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start:example:app": "node ./example/app.js",
-    "test": "./node_modules/.bin/mocha",
+    "test": "./node_modules/.bin/mocha test --exit --recursive --trace-warnings",
     "docker:test": "./scripts/docker_test.sh"
   },
   "dependencies": {
@@ -26,10 +26,7 @@
   "devDependencies": {
     "chai": "^4.1.0",
     "dockerode": "^2.5.0",
-    "eslint": "^4.19.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jest": "^21.15.0",
+    "eslint": "^6.6.0",
     "express": "^4.16.3",
     "mocha": "^3.4.2",
     "superagent": "^3.5.2",
