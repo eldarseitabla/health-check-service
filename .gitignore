@@ -1,6 +1,6 @@
 # OS generated files
-#DS_Store
-#.DS_Store?
+DS_Store
+.DS_Store?
 ._*
 .*.sw[op]
 .Spotlight-V100
@@ -15,7 +15,7 @@ Thumbs.db
 # Dependencies
 node_modules/
 
-#package-lock.json
+package-lock.json
 
 # dotenv environment variables file
 .env
