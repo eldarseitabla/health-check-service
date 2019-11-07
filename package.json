@@ -2,15 +2,14 @@
   "name": "@eldarseytablaev/health-check-service",
   "license": "UNLICENSED",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "start:example:app": "node ./example/app.js",
+    "start:example:app": "node --inspect=0.0.0.0:9229 --max_old_space_size=4096 ./example/app.js",
     "test": "./node_modules/.bin/mocha test --exit --recursive --trace-warnings",
     "docker:test": "./scripts/docker_test.sh"
   },
   "dependencies": {
     "amqplib": "^0.5.2",
-    "aws-sdk": "^2.90.0",
     "basic-auth": "^1.1.0",
     "debug": "^2.6.8",
     "dotenv": "^4.0.0",
@@ -24,11 +23,13 @@
     "whitelist-ips": "^1.0.1"
   },
   "devDependencies": {
+    "aws-sdk": "^2.564.0",
     "chai": "^4.1.0",
     "dockerode": "^2.5.0",
     "eslint": "^6.6.0",
     "express": "^4.16.3",
     "mocha": "^6.2.2",
+    "sinon": "^7.5.0",
     "superagent": "^3.5.2",
     "supertest": "^3.0.0"
   }

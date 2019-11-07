@@ -50,6 +50,7 @@
         "name": "context",
         "message": "Don't use Mocha's global context"
       }
-    ]
+    ],
+    "no-return-await": 1
   }
 }
