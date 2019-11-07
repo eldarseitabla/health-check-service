@@ -1,3 +1,4 @@
+/* eslint-disable */
 process.env.NODE_ENV = 'test'
 
 process.env.MINIO_HOST = process.env.MINIO_HOST || '0.0.0.0'
@@ -20,13 +21,10 @@ const docker = new Docker({
 })
 
 const s3Options = Object.freeze({
-  endpoint: process.env.AWS_S3_ENDPOINT,
+  region: 'eu-central-1',
+  bucketName: process.env.AWS_S3_BUCKET,
   accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
-  s3BucketEndpoint: true,
-  signatureVersion: 'v4',
-  bucketName: process.env.AWS_S3_BUCKET,
-  region: 'eu-central-1',
 })
 
 const minioOptions = {

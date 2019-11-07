@@ -1,8 +1,7 @@
-const util = require('util')
 const uuid = require('uuid').v4
 const whitelist = require('whitelist-ips')
 const auth = require('basic-auth')
-const checksProviders = require('./checks')
+const checksProviders = require('./checksProviders')
 
 const { STATUS, whitelistIps } = require('./config')
 
@@ -31,12 +30,12 @@ const executeHealthCheack = checks => ((req, res, next) => {
     'X-Request-ID': req.reqId || req.reqID || uuid(),
   })
 
-  const promises = () => Object.keys(checks).map(name => checks[name]().then(resolve => ({ [name]: resolve })))
+  const promises = () => Object.keys(checks).map(name => checks[name].execute().then(resolve => ({ [name]: resolve })))
 
   return Promise.all(promises())
     .then((results) => {
       const services = results.reduce((prevValue, currValue) => {
-        if (util.isNullOrUndefined(currValue)) {
+        if (currValue === undefined || currValue === null) {
           return prevValue
         }
         return Object.assign(prevValue, currValue)
@@ -44,7 +43,7 @@ const executeHealthCheack = checks => ((req, res, next) => {
 
       const failures = Object.keys(services).reduce((fails, name) => {
         if (services[name].status === 'failure') {
-                    fails += 1 // eslint-disable-line
+          fails += 1
         }
         return fails
       }, 0)
@@ -79,12 +78,24 @@ const basicAuth = () => (req, res, next) => {
   return next()
 }
 
-const checkHealth = (ipAdreses, checksProvids) => {
+const checkHealthService = (ipAdreses, checksProvids) => {
   const ips = ipAdreses || whitelistIps.local
   const checks = (checksProvids || {})
   return [basicAuth(), executeHealthCheack(checks), checkIp(ips)]
 }
 
+class HealthConfig {
+  constructor(ips, checks, port) {
+    this.ips = ips
+    this.checks = checks
+    this.port = port
+  }
+}
+
 module.exports = {
-  checks: checksProviders, checkHealth, whitelistIps, STATUS,
+  HealthConfig,
+  checkHealthService,
+  checksProviders,
+  whitelistIps,
+  STATUS,
 }
