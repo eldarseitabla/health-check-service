@@ -12,7 +12,8 @@
     "example": "node ./example/app.js",
     "lint": "eslint .",
     "test": "./node_modules/.bin/mocha test --exit --recursive --trace-warnings",
-    "docker:test": "./scripts/docker_test.sh"
+    "docker:test": "./scripts/docker_test.sh",
+    "publish": "npm publish ."
   },
   "dependencies": {
     "amqplib": "^0.5.2",
