@@ -1,10 +1,15 @@
 {
   "name": "@eldarseytablaev/health-check-service",
-  "license": "UNLICENSED",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=12.13.0",
+    "npm": ">=6.12.0"
+  },
   "scripts": {
-    "start:example:app": "node --inspect=0.0.0.0:9229 --max_old_space_size=4096 ./example/app.js",
+    "example": "node ./example/app.js",
     "test": "./node_modules/.bin/mocha test --exit --recursive --trace-warnings",
     "docker:test": "./scripts/docker_test.sh"
   },
