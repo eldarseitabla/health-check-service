@@ -6,9 +6,14 @@ os:
 script:
   - npm run lint
   - npm test
-branches:
-  only:
-    - master
+after_script:
+  - |
+    # Upload coverage to coveralls
+    npm install --save-dev coveralls@2.12.0
+    coveralls < ./coverage/lcov.info
+cache:
+  directories:
+    - node_modules
 
 deploy:
   provider: npm
@@ -18,3 +23,4 @@ deploy:
     tags: true
     tag: next
     branch: master
+sudo: false
