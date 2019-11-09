@@ -6,3 +6,15 @@ os:
 script:
   - npm run lint
   - npm test
+branches:
+  only:
+    - master
+
+deploy:
+  provider: npm
+  email: "YOUR_EMAIL_ADDRESS"
+  api_key: "YOUR_AUTH_TOKEN"
+  on:
+    tags: true
+    tag: next
+    branch: master
