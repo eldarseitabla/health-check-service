@@ -4,12 +4,12 @@ Services health check API
 [![Build Status](https://travis-ci.org/eldarseytablaev/health-check-service/urls-checker.svg?branch=master)](https://travis-ci.org/eldarseytablaev/health-check-service)
 
 ### Supported services
-- AWS
-- Postgres
-- Redis
-- SMTP
-- MongoDb
-- RabbitMQ
+- [x] AWS
+- [ ] Redis
+- [ ] Postgres
+- [ ] MongoDb
+- [ ] RabbitMQ
+- [ ] SMTP
 
 ### Install
 ```bash
