@@ -6,7 +6,6 @@ os:
 script:
   - npm run lint
   - npm test
-
 after_script:
   - |
     # Upload coverage to coveralls
@@ -16,7 +15,6 @@ after_script:
 cache:
   directories:
     - node_modules
-
 deploy:
   provider: npm
   email: "YOUR_EMAIL_ADDRESS"
