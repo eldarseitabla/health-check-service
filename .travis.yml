@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - 12.13.0
+os:
+  - linux
+script:
+  - npm run lint
+  - npm test
+  - bash ./scripts/create_pull_request.sh
+deploy:
+  provider: npm
+  email: "YOUR_EMAIL_ADDRESS"
+  api_key: "YOUR_AUTH_TOKEN"
