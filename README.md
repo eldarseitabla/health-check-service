@@ -1,13 +1,15 @@
 # health-check-service
 Services health check API
 
+[![Build Status](https://travis-ci.org/eldarseytablaev/health-check-service/urls-checker.svg?branch=master)](https://travis-ci.org/eldarseytablaev/health-check-service)
+
 ### Supported services
-- AWS
-- Postgres
-- Redis
-- SMTP
-- MongoDb
-- RabbitMQ
+- [x] AWS
+- [ ] Redis
+- [ ] Postgres
+- [ ] MongoDb
+- [ ] RabbitMQ
+- [ ] SMTP
 
 ### Install
 ```bash
@@ -21,7 +23,7 @@ npm i -S @eldarseytablaev/health-check-service
     ```
 - Start Example App
     ```bash
-    npm run start:example:app
+    npm run example
     ```
 - Fetch service status info:
     ```bash
