@@ -1,9 +1,12 @@
 {
   "name": "@eldarseytablaev/health-check-service",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "index.js",
-  "license": "UNLICENSED",
-  "private": true,
+  "description": "Services health check API",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
   "engines": {
     "node": ">=12.13.0",
     "npm": ">=6.12.0"
@@ -16,28 +19,30 @@
     "publish": "npm publish ."
   },
   "dependencies": {
-    "amqplib": "^0.5.2",
     "basic-auth": "^1.1.0",
-    "debug": "^2.6.8",
-    "dotenv": "^4.0.0",
-    "minio": "^3.1.3",
-    "mongodb": "^3.0.5",
-    "nodemailer": "^4.0.1",
-    "pg": "^7.0.2",
-    "redis": "^2.7.1",
-    "s3fs": "^2.5.0",
     "uuid": "^3.1.0",
     "whitelist-ips": "^1.0.1"
   },
   "devDependencies": {
     "aws-sdk": "^2.564.0",
-    "chai": "^4.1.0",
     "dockerode": "^2.5.0",
+    "dotenv": "^8.2.0",
     "eslint": "^6.6.0",
     "express": "^4.16.3",
     "mocha": "^6.2.2",
+    "nodemailer": "^6.3.1",
     "sinon": "^7.5.0",
     "superagent": "^3.5.2",
     "supertest": "^3.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eldarseytablaev/health-check-service.git"
+  },
+  "author": "Eldar Seytablaev <eldar.seytablaev@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eldarseytablaev/health-check-service/issues"
+  },
+  "homepage": "https://github.com/eldarseytablaev/health-check-service#readme"
 }

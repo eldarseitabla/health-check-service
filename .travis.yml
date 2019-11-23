@@ -9,5 +9,7 @@ script:
   - bash ./scripts/create_pull_request.sh
 deploy:
   provider: npm
-  email: "YOUR_EMAIL_ADDRESS"
-  api_key: "YOUR_AUTH_TOKEN"
+  email: $NPM_EMAIL_ADDRESS
+  api_key: $NPM_TOKEN
+  on:
+    tags: true
