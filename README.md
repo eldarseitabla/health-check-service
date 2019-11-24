@@ -13,7 +13,7 @@ Services health check API
 
 ### Install
 ```bash
-npm i -S @eldarseytablaev/health-check-service
+npm i -S health-check-service
 ```
 
 #### Example and Dev
