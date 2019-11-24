@@ -44,5 +44,8 @@
   "bugs": {
     "url": "https://github.com/eldarseytablaev/health-check-service/issues"
   },
-  "homepage": "https://github.com/eldarseytablaev/health-check-service#readme"
+  "homepage": "https://github.com/eldarseytablaev/health-check-service#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
