@@ -1,6 +1,6 @@
 {
   "name": "@eldarseytablaev/health-check-service",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "index.js",
   "description": "Services health check API",
   "directories": {
